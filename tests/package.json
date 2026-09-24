@@ -2,9 +2,16 @@
   "name": "tabogt-tests",
   "private": true,
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:one": "playwright test -g",
+    "docs": "node docs-screenshots.cjs",
+    "icons": "node make-icons.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0"
+  },
+  "description": "End-to-end tests and tooling for the TabOgt extension (Playwright, drives a real Brave/Chromium).",
+  "engines": {
+    "node": ">=18"
   }
 }
