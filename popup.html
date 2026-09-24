@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Save to TabOgt</title>
+<script src="boot.js"></script>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<main class="pop">
+  <div class="page">
+    <img id="fav" alt="">
+    <div class="page-text">
+      <input id="title" class="title-in" spellcheck="false" aria-label="Title">
+      <div id="url" class="url"></div>
+    </div>
+  </div>
+
+  <div id="exists" class="exists" hidden></div>
+
+  <label class="field">
+    <span>Save to</span>
+    <select id="section"></select>
+  </label>
+  <div id="newSecRow" class="field" hidden>
+    <input id="newSec" placeholder="New section name">
+  </div>
+
+  <label class="field">
+    <span>Tags</span>
+    <input id="tags" placeholder="design, read later" spellcheck="false">
+  </label>
+
+  <label class="field">
+    <span>Note</span>
+    <textarea id="note" rows="2" placeholder="Optional"></textarea>
+  </label>
+
+  <button id="saveBtn" class="primary">Save page <kbd>Enter</kbd></button>
+
+  <div class="row">
+    <button id="saveAll" class="ghost">Save all tabs here</button>
+    <button id="saveSession" class="ghost">Save as session</button>
+  </div>
+
+  <footer>
+    <button id="openDash" class="link">Open dashboard</button>
+    <span id="status" class="status"></span>
+  </footer>
+</main>
+<script type="module" src="popup.js"></script>
+</body>
+</html>

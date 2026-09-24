@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "TabOgt",
+  "short_name": "TabOgt",
+  "version": "1.4.0",
+  "minimum_chrome_version": "111",
+  "description": "Bookmark dashboard for every new tab. Workspaces, sections, a searchable Library, sessions and notes. Optional sync through your own private GitHub repository.",
+  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "chrome_url_overrides": { "newtab": "newtab.html" },
+  "action": {
+    "default_title": "Save to TabOgt",
+    "default_popup": "popup.html",
+    "default_icon": { "16": "icons/16.png", "32": "icons/32.png" }
+  },
+  "background": { "service_worker": "background.js", "type": "module" },
+  "permissions": ["storage", "unlimitedStorage", "tabs", "contextMenus", "favicon", "search", "alarms"],
+  "host_permissions": ["https://api.github.com/*"],
+  "optional_permissions": ["bookmarks"],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+Shift+D" },
+      "description": "Open the save popup"
+    },
+    "quick-save": {
+      "suggested_key": { "default": "Alt+Shift+S" },
+      "description": "Instantly save the current page to the last used section"
+    }
+  }
+}

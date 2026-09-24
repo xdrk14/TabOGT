@@ -1,0 +1,23 @@
+# Test tooling and output (reinstall with: cd tests && npm install)
+tests/node_modules/
+tests/test-results/
+tests/playwright-report/
+tests/screenshots/
+
+# Packaging and signing keys: never commit a .pem (it proves ownership of the extension ID)
+*.pem
+*.crx
+*.zip
+
+# Local data exports
+bimzy-tab-backup-*.json
+tabogt-backup-*.json
+tabogt-bookmarks-*.html
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
