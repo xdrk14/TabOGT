@@ -78,15 +78,46 @@ bookmarks unless you turn on [sync](#set-up-on-another-laptop-and-sync).
 **Add to Firefox**. Firefox then keeps it updated automatically. The listing is being prepared; the link will
 appear here when it is live.
 
-**To try it now (temporary install):**
+**Until then, install it yourself** (Firefox's version of Chrome's *Load unpacked*). Pick the option that fits your Firefox:
+
+| Your Firefox | Stays installed after a restart? | Method |
+|---|---|---|
+| Regular Firefox | No, it is removed when Firefox closes | [A. Temporary add-on](#a-temporary-add-on-any-firefox) |
+| Firefox **Developer Edition**, **Nightly** or **ESR** | Yes | [B. Permanent self-install](#b-permanent-self-install-developer-edition-nightly-or-esr) |
+
+Regular Firefox only keeps add-ons that Mozilla has signed. That is what the Add-ons listing provides, so
+option B needs one of the Firefox versions that let you switch the signature check off.
+
+#### A. Temporary add-on (any Firefox)
 
 1. Download **`TabOgt-firefox-v<version>.zip`** from the [latest release](https://github.com/xdrk14/TabOGT/releases/latest).
-2. In Firefox, open `about:debugging#/runtime/this-firefox`.
+2. In Firefox, go to `about:debugging#/runtime/this-firefox`.
 3. Click **Load Temporary Add-on…** and pick the downloaded zip. You can also unzip it and pick its `manifest.json`.
 4. Open a new tab. Firefox may ask whether to keep the new-tab change; choose **Keep changes**.
 
-A temporary add-on is removed when Firefox restarts. Back up first (**Customise > Back up (JSON)**), or use
-[sync](#set-up-on-another-laptop-and-sync) to keep your bookmarks.
+It is removed when Firefox restarts, and your TabOgt bookmarks go with it. Before closing Firefox, back up
+(**Customise > Back up (JSON)**) or use [sync](#set-up-on-another-laptop-and-sync). After the next start, load it again
+and restore.
+
+#### B. Permanent self-install (Developer Edition, Nightly or ESR)
+
+This keeps TabOgt installed across restarts, like *Load unpacked* in Chrome.
+
+1. Get [Firefox Developer Edition](https://www.mozilla.org/firefox/developer/), [Nightly](https://www.mozilla.org/firefox/channel/desktop/#nightly)
+   or [ESR](https://www.mozilla.org/firefox/enterprise/) if you don't have one.
+2. Allow unsigned add-ons in that Firefox:
+   1. Go to `about:config` and accept the warning.
+   2. Search for `xpinstall.signatures.required` and set it to **false** (click the toggle).
+3. Download **`TabOgt-firefox-v<version>.zip`** from the [latest release](https://github.com/xdrk14/TabOGT/releases/latest)
+   and rename it from **`.zip` to `.xpi`**, for example `TabOgt-firefox-v1.5.0.xpi`. An `.xpi` is just a zip with a
+   different name. If Windows hides file extensions: File Explorer > **View > Show > File name extensions**.
+4. Go to `about:addons`, click the **gear icon > Install Add-on From File…**, and pick the `.xpi`. Confirm with **Add**.
+5. Open a new tab and choose **Keep changes** if Firefox asks.
+
+**To update:** download the new zip, rename it to `.xpi`, and install it the same way (step 4). It replaces the old
+version and keeps your bookmarks.
+
+The signature switch only affects that Firefox profile. Only install add-ons you trust while it is off.
 
 **Firefox differences:**
 

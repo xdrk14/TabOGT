@@ -135,7 +135,7 @@ fs.writeFileSync(path.join(DIST, 'RELEASE_NOTES.md'),
 | Browser | File | How to install |
 |---|---|---|
 | Brave, Chrome, Edge, Vivaldi, Opera | \`${chromiumZip}\` | Unzip it, open \`brave://extensions\` (or \`chrome://extensions\`), turn on **Developer mode**, click **Load unpacked** and pick the \`TabOgt-chromium\` folder. |
-| Firefox | \`${firefoxZip}\` | Install TabOgt from addons.mozilla.org once it is listed. Until then: \`about:debugging\` > This Firefox > **Load Temporary Add-on** > pick this zip. |
+| Firefox | \`${firefoxZip}\` | Install TabOgt from addons.mozilla.org once it is listed. Until then: \`about:debugging\` > This Firefox > **Load Temporary Add-on** > pick this zip (removed on restart). To keep it installed, use Firefox Developer Edition, Nightly or ESR (see the README, "Permanent self-install"). |
 
 See the README for full steps.
 
