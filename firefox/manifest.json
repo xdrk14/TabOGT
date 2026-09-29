@@ -1,0 +1,69 @@
+{
+  "manifest_version": 3,
+  "name": "TabOgt",
+  "short_name": "TabOgt",
+  "version": "1.5.0",
+  "description": "New-tab bookmark dashboard: workspaces, sections, a searchable Library, sessions, notes and optional private GitHub sync.",
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "action": {
+    "default_title": "Save to TabOgt",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png"
+    }
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "tabs",
+    "contextMenus",
+    "search",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*"
+  ],
+  "optional_permissions": [
+    "bookmarks"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+D"
+      },
+      "description": "New-tab bookmark dashboard: workspaces, sections, a searchable Library, sessions, notes and optional private GitHub sync."
+    },
+    "quick-save": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "New-tab bookmark dashboard: workspaces, sections, a searchable Library, sessions, notes and optional private GitHub sync."
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "tabogt@xdrk14",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  }
+}

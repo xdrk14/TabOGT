@@ -1,6 +1,6 @@
 # TabOgt
 
-A calm, fast bookmark dashboard for every new tab in **Brave**, **Chrome** and other Chromium browsers.
+A calm, fast bookmark dashboard for every new tab in **Brave**, **Chrome**, **Edge** and other Chromium browsers, and in **Firefox**.
 Workspaces, sections, a searchable Library for all your imported bookmarks, drag and drop everywhere,
 frosted wallpapers, and free sync between laptops through your own private GitHub repository.
 
@@ -45,50 +45,82 @@ No accounts, no tracking, no build step: plain JavaScript that runs straight fro
 
 ## Install
 
-You need **Brave, Chrome or Edge, version 111 or newer**. Nothing else is required to *use* TabOgt;
-Node.js is only needed if you want to run the tests (see [Development](#development)).
+TabOgt comes in two editions built from the same code. Download the one for your browser from the
+**[Releases page](https://github.com/xdrk14/TabOGT/releases/latest)**:
 
-### 1. Get the code
+| Your browser | Download | Install method |
+|---|---|---|
+| **Brave, Chrome, Edge, Vivaldi, Opera** (Chromium, version 111+) | `TabOgt-chromium-v<version>.zip` | Unzip, then **Load unpacked** |
+| **Firefox** (version 128+) | Firefox Add-ons *(coming soon)*, or `TabOgt-firefox-v<version>.zip` to try it now | **Add to Firefox**, or a temporary install |
 
-**With Git:**
+The two files never overlap: the Chromium zip unzips into its own `TabOgt-chromium` folder, and the Firefox file is
+only used by Firefox. You can have TabOgt in Brave and in Firefox on the same computer; each browser keeps its own
+bookmarks unless you turn on [sync](#set-up-on-another-laptop-and-sync).
+
+### Brave, Chrome, Edge and other Chromium browsers
+
+1. Download **`TabOgt-chromium-v<version>.zip`** from the [latest release](https://github.com/xdrk14/TabOGT/releases/latest).
+2. Unzip it: right-click > **Extract All**. You get a folder called **`TabOgt-chromium`**.
+3. Move that folder somewhere permanent, for example `Documents\TabOgt-chromium`.
+   The browser loads TabOgt from this folder, so don't delete or move it afterwards.
+4. Open the extensions page:
+   - Brave: `brave://extensions`
+   - Chrome: `chrome://extensions`
+   - Edge: `edge://extensions`
+5. Turn on **Developer mode** (a switch in the top-right corner, or the left sidebar in Edge).
+6. Click **Load unpacked** and select the **`TabOgt-chromium`** folder (the one that contains `manifest.json`).
+7. Open a new tab. If the browser asks whether to keep the new-tab change, choose **Keep it**.
+8. Click the puzzle icon in the toolbar and **pin TabOgt** so the save popup is one click away.
+
+### Firefox
+
+**From Firefox Add-ons (recommended, once listed):** open TabOgt's page on addons.mozilla.org and click
+**Add to Firefox**. Firefox then keeps it updated automatically. The listing is being prepared; the link will
+appear here when it is live.
+
+**To try it now (temporary install):**
+
+1. Download **`TabOgt-firefox-v<version>.zip`** from the [latest release](https://github.com/xdrk14/TabOGT/releases/latest).
+2. In Firefox, open `about:debugging#/runtime/this-firefox`.
+3. Click **Load Temporary Add-on…** and pick the downloaded zip. You can also unzip it and pick its `manifest.json`.
+4. Open a new tab. Firefox may ask whether to keep the new-tab change; choose **Keep changes**.
+
+A temporary add-on is removed when Firefox restarts. Back up first (**Customise > Back up (JSON)**), or use
+[sync](#set-up-on-another-laptop-and-sync) to keep your bookmarks.
+
+**Firefox differences:**
+
+- Site icons show as coloured letters by default: Firefox gives extensions no private icon source.
+  Choose **Customise > Behaviour > Site icons > Sharper** for real icons from Google's icon service.
+
+### From source (developers)
+
+The repository root *is* the Chromium edition, and `firefox/` is the Firefox edition:
 
 ```bash
 git clone https://github.com/xdrk14/TabOGT.git
 ```
 
-**Without Git:** on the GitHub page click **Code > Download ZIP**, then unzip it.
-
-Put the folder somewhere permanent (for example `Documents\TabOgt`).
-The browser loads TabOgt from this folder, so don't delete or move it later.
-
-### 2. Load it into the browser
-
-1. Open the extensions page:
-   - Brave: `brave://extensions`
-   - Chrome: `chrome://extensions`
-   - Edge: `edge://extensions`
-2. Turn on **Developer mode** (a switch in the top-right corner, or the left sidebar in Edge).
-3. Click **Load unpacked** and select the `TabOgt` folder (the one that contains `manifest.json`).
-4. Open a new tab. If the browser asks whether to keep the new-tab change, choose **Keep it**.
-5. Click the puzzle icon in the toolbar and **pin TabOgt** so the save popup is one click away.
-
-That's it. You can ignore the `tests` folder; the extension doesn't use it.
+- **Chromium browsers:** **Load unpacked** the cloned `TabOGT` folder.
+- **Firefox:** use **Load Temporary Add-on** and pick `firefox/manifest.json`.
 
 ## Update
 
-**With Git:**
+**Brave, Chrome, Edge:**
 
-```bash
-cd TabOgt
-git pull
-```
+1. Download the new `TabOgt-chromium` zip.
+2. Unzip it, then copy its files **over the same `TabOgt-chromium` folder** you installed from.
+3. Click the **reload** arrow on the TabOgt card at `brave://extensions`.
 
-**With a ZIP:** download the new ZIP and replace the files in the same folder.
+**Firefox:**
 
-Then open `brave://extensions` and click the **reload** arrow on the TabOgt card.
+- Installed from Firefox Add-ons: updates arrive automatically.
+- Temporary install: load the new zip the same way.
 
-> Always update the files **in the same folder**. Loading TabOgt from a different folder makes the browser treat it
-> as a new extension with empty data. If that happens, use the steps in [Troubleshooting](#troubleshooting).
+**From source:** run `git pull`, then reload.
+
+> Always update the files **in the same folder**. Loading TabOgt from a different folder makes a Chromium browser
+> treat it as a new extension with empty data. If that happens, use the steps in [Troubleshooting](#troubleshooting).
 
 ## Set up on another laptop and sync
 
@@ -182,7 +214,11 @@ Edit a file, click **reload** on the extension card, and open a new tab.
 | `organize.js` | Sorts Library bookmarks into topic sections |
 | `boot.js` | Applies the saved theme before the page paints (no flash) |
 | `icons/` | Extension icons; `icon.svg` and `icon-small.svg` are the sources |
-| `tests/` | Playwright end-to-end tests and tooling (not part of the extension) |
+| `firefox/` | The Firefox edition, generated by `npm run build` (don't edit by hand) |
+| `scripts/build.mjs` | Builds `firefox/` and the release zips in `dist/` |
+| `.github/workflows/release.yml` | Publishes a GitHub release when a `v*` tag is pushed |
+| `package.json` | `npm run build`, `lint:firefox`, `test`, `test:firefox` |
+| `tests/` | Playwright end-to-end tests (Chromium), the Firefox smoke test, and tooling (not part of the extension) |
 | `docs/` | README screenshots |
 | `CHANGELOG.md` | What changed in each version, and why |
 
@@ -250,6 +286,65 @@ Rebuild `icons/*.png` from `icons/icon.svg` and `icons/icon-small.svg`:
 npm run icons
 ```
 
+### Build the release files
+
+From the repository root:
+
+```bash
+npm run build
+```
+
+This makes:
+
+- `firefox/`: the Firefox edition. It is the same code with a Firefox-only `manifest.json`: background scripts
+  instead of a service worker, no `favicon` permission, the add-on ID `tabogt@xdrk14`, Firefox 128+, and a
+  "no data collected" declaration. It is regenerated on every build, so **edit the root files, never `firefox/`**,
+  and commit the rebuilt folder.
+- `dist/TabOgt-chromium-v<version>.zip`: for Brave, Chrome and Edge.
+- `dist/TabOgt-firefox-v<version>.zip`: for Firefox and addons.mozilla.org. `manifest.json` sits at the zip root, as AMO requires.
+
+Check the Firefox edition with Mozilla's own validator (the same checks AMO runs):
+
+```bash
+npm run lint:firefox
+```
+
+Run the Firefox smoke test in your installed Firefox. It uses a throwaway profile and a temporary add-on:
+
+```bash
+npm run test:firefox
+```
+
+### Publish a release
+
+1. Bump `"version"` in `manifest.json` and add a section for it to `CHANGELOG.md`.
+2. Rebuild and commit:
+
+   ```bash
+   npm run build
+   git add -A
+   git commit -m "TabOgt 1.x.y"
+   git push
+   ```
+
+3. Tag the version and push the tag. GitHub Actions (`.github/workflows/release.yml`) then builds both zips, runs
+   Mozilla's validator, and publishes the release with both files attached:
+
+   ```bash
+   git tag v1.x.y
+   git push origin v1.x.y
+   ```
+
+### Publish to Firefox Add-ons (addons.mozilla.org)
+
+1. Sign in at [addons.mozilla.org/developers](https://addons.mozilla.org/developers/).
+2. **First version:** choose **Submit a New Add-on** > **On this site**, then upload `TabOgt-firefox-v<version>.zip`.
+   - When asked about source code, answer **No**: the code is plain and unminified.
+   - Fill in the listing: name, summary, category, screenshots from `docs/`, and a privacy note that TabOgt collects no data.
+3. **Each later version:** go to the add-on's page > **Upload New Version** and upload that version's zip.
+4. Mozilla reviews listed add-ons, usually within a few days. Every new version is signed again automatically
+   when it is approved, and Firefox users get it as an automatic update.
+
 ---
 
 ## Troubleshooting
@@ -268,6 +363,10 @@ Make sure the folder is available offline: right-click it and choose **Always ke
 
 **The new tab still shows the browser's own page.**
 Check that TabOgt is enabled at `brave://extensions`. If another extension also replaces the new tab, disable it.
+
+**Firefox: TabOgt disappeared after restarting Firefox.**
+Temporary add-ons (loaded from `about:debugging`) are removed when Firefox closes. Install it from Firefox Add-ons
+once it is listed, or load it again and restore your backup or sync.
 
 **Sync says the token was rejected.**
 The token expired or lost access. Create a new one (see [Sync](#set-up-on-another-laptop-and-sync)) and click **Connect** again.

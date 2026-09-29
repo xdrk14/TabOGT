@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Tab</title>
+<script src="boot.js"></script>
+<link rel="stylesheet" href="newtab.css">
+</head>
+<body>
+<div id="wall" aria-hidden="true"></div>
+
+<div class="app">
+  <header class="top">
+    <div class="clock" id="clock">
+      <div class="time" id="time"></div>
+      <div class="date" id="date"></div>
+      <div class="greet" id="greet"></div>
+    </div>
+
+    <button class="ws-pill" id="wsPill" aria-haspopup="menu" title="Switch workspace"></button>
+
+    <div class="search" id="searchWrap">
+      <div class="search-box glass">
+        <svg viewBox="0 0 24 24" class="i"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        <input id="q" type="text" placeholder="Search bookmarks, Library and web" autocomplete="off" spellcheck="false" aria-label="Search" role="combobox" aria-controls="results" aria-expanded="false" aria-autocomplete="list">
+        <kbd>Ctrl K</kbd>
+      </div>
+      <div class="results glass" id="results" hidden role="listbox"></div>
+    </div>
+
+    <nav class="tools" aria-label="Panels">
+      <button class="tool" data-panel="library" title="Library" aria-label="Library">
+        <svg viewBox="0 0 24 24" class="i"><path d="M4 4h4v16H4zM10 4h4v16h-4z"/><path d="m16.5 5.5 3.4-.9 3.1 14.6-3.4.9z"/></svg>
+      </button>
+      <button class="tool" data-panel="tabs" title="Open tabs" aria-label="Open tabs">
+        <svg viewBox="0 0 24 24" class="i"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 9h18M8 5v4"/></svg>
+      </button>
+      <button class="tool" data-panel="sessions" title="Sessions" aria-label="Sessions">
+        <svg viewBox="0 0 24 24" class="i"><rect x="4" y="4" width="12" height="12" rx="2.5"/><path d="M8 20h9a3 3 0 0 0 3-3V8"/></svg>
+      </button>
+      <button class="tool" data-panel="notes" title="Notes" aria-label="Notes">
+        <svg viewBox="0 0 24 24" class="i"><path d="M5 4h14v11l-5 5H5z"/><path d="M14 20v-5h5M8 9h8M8 13h4"/></svg>
+      </button>
+      <button class="tool" data-panel="settings" title="Customise" aria-label="Customise">
+        <svg viewBox="0 0 24 24" class="i"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="wsbar">
+    <div class="wstabs glass" id="wsTabs" role="tablist"></div>
+    <div class="hint" id="hint">Drag links or tabs onto a section, or paste a URL. Imports go to the Library.</div>
+  </div>
+
+  <main class="board" id="board"></main>
+</div>
+
+<aside class="drawer glass" id="drawer" hidden>
+  <header class="drawer-h">
+    <h2 id="drawerTitle"></h2>
+    <button class="icon-btn" id="drawerClose" title="Close (Esc)">
+      <svg viewBox="0 0 24 24" class="i"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<div class="menu glass" id="menu" hidden role="menu"></div>
+<div class="modal" id="modal" hidden><div class="dialog glass" id="dialog" role="dialog" aria-modal="true"></div></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<input type="file" id="fileIn" accept=".json,.html,.htm,.csv,.tsv,.txt" hidden>
+
+<script type="module" src="newtab.js"></script>
+</body>
+</html>

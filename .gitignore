@@ -21,3 +21,7 @@ desktop.ini
 .vscode/
 .idea/
 *.log
+
+# Release builds (npm run build); firefox/ is committed, dist/ is not
+dist/
+web-ext-artifacts/

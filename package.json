@@ -1,0 +1,16 @@
+{
+  "name": "tabogt",
+  "version": "1.5.0",
+  "private": true,
+  "description": "TabOgt: new-tab bookmark dashboard for Chromium browsers and Firefox.",
+  "license": "GPL-3.0",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "lint:firefox": "npx --yes web-ext@8 lint --source-dir firefox",
+    "test": "npm --prefix tests test",
+    "test:firefox": "node tests/firefox-smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

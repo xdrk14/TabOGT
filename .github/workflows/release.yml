@@ -1,0 +1,37 @@
+# Pushing a version tag (e.g. `git tag v1.5.0 && git push origin v1.5.0`) builds both editions and publishes a
+# GitHub release with:
+#   TabOgt-chromium-v<version>.zip  (Brave / Chrome / Edge: unzip, then Load unpacked)
+#   TabOgt-firefox-v<version>.zip   (the file to upload to addons.mozilla.org)
+# The tag must match the "version" in manifest.json.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build both editions
+        run: node scripts/build.mjs --check-tag "$GITHUB_REF_NAME"
+
+      - name: Check the Firefox edition with Mozilla's validator
+        run: npx --yes web-ext@8 lint --source-dir firefox
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/TabOgt-*.zip \
+            --title "TabOgt $GITHUB_REF_NAME" \
+            --notes-file dist/RELEASE_NOTES.md
