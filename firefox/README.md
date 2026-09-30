@@ -7,4 +7,4 @@ repository root. Do not edit it by hand: change the root files and rebuild.
 - Publish it: upload `dist/TabOgt-firefox-v1.5.0.zip` at https://addons.mozilla.org/developers/.
 
 The code is identical to the Chromium edition; only `manifest.json` differs (background scripts instead of a
-service worker, no `favicon` permission, a Gecko add-on ID, Firefox 128.0+, and a "no data collected" declaration).
+service worker, no `favicon` permission, a Gecko add-on ID, Firefox 142.0+, and a "no data collected" declaration).

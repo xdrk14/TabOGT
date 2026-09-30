@@ -51,7 +51,7 @@ TabOgt comes in two editions built from the same code. Download the one for your
 | Your browser | Download | Install method |
 |---|---|---|
 | **Brave, Chrome, Edge, Vivaldi, Opera** (Chromium, version 111+) | `TabOgt-chromium-v<version>.zip` | Unzip, then **Load unpacked** |
-| **Firefox** (version 128+) | Firefox Add-ons *(coming soon)*, or `TabOgt-firefox-v<version>.zip` to try it now | **Add to Firefox**, or a temporary install |
+| **Firefox** (version 142+) | Firefox Add-ons *(coming soon)*, or `TabOgt-firefox-v<version>.zip` to try it now | **Add to Firefox**, or a temporary install |
 
 The two files never overlap: the Chromium zip unzips into its own `TabOgt-chromium` folder, and the Firefox file is
 only used by Firefox. You can have TabOgt in Brave and in Firefox on the same computer; each browser keeps its own
@@ -328,7 +328,7 @@ npm run build
 This makes:
 
 - `firefox/`: the Firefox edition. It is the same code with a Firefox-only `manifest.json`: background scripts
-  instead of a service worker, no `favicon` permission, the add-on ID `tabogt@xdrk14`, Firefox 128+, and a
+  instead of a service worker, no `favicon` permission, the add-on ID `tabogt@xdrk14`, Firefox 142+, and a
   "no data collected" declaration. It is regenerated on every build, so **edit the root files, never `firefox/`**,
   and commit the rebuilt folder.
 - `dist/TabOgt-chromium-v<version>.zip`: for Brave, Chrome and Edge.

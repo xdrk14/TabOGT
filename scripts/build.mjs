@@ -20,7 +20,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FIREFOX_DIR = path.join(ROOT, 'firefox');
 const DIST = path.join(ROOT, 'dist');
 const GECKO_ID = 'tabogt@xdrk14';
-const FIREFOX_MIN = '128.0';   // CSS zoom (126), content-visibility (125), color-mix (113); 128 is the current ESR line
+const FIREFOX_MIN = '142.0';   // data_collection_permissions needs 140 (desktop) and 142 (Android); CSS zoom 126, content-visibility 125
 
 const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.json'), 'utf8'));
 const version = manifest.version;
